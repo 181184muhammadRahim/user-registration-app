@@ -59,6 +59,9 @@ const registrationSlice=createSlice(
                 }
 
 
+            },
+            logoutUser(state){
+                state.current_user="";
             }
         }
 
@@ -66,6 +69,7 @@ const registrationSlice=createSlice(
 )
 export const {
     addUser,
-    loginUser
+    loginUser,
+    logoutUser
   } = registrationSlice.actions;
   export default registrationSlice.reducer;
