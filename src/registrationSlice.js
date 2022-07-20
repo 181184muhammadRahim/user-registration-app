@@ -1,23 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState={
-    current_user: "",
-    Users:[
-        {
-            UserId:0,
-            Name:"Rahim",
-            Email:"rahim123@gmail.com",
-            Password:"123456"
-        },
-        {
-            UserId:1,
-            Name:"Ahmed",
-            Email: "ahmed@gmail.com",
-            Password:"123456"
-        }
-    ]
+    current_user: JSON.parse(localStorage.getItem("current-user")) || "",
+    Users: JSON.parse(localStorage.getItem("user-list")) || []
 }
-let ID=2;
 const registrationSlice=createSlice(
     {
         name:"registration",
@@ -32,12 +18,21 @@ const registrationSlice=createSlice(
                     }
                 }
                 if(!flag){
-                    state.Users.push({
-                        UserId:ID++,
-                        Name:action.payload.name,
-                        Email:action.payload.email,
-                        Password:action.payload.password
-                    })
+                    if(state.Users.length===0){
+                        state.Users.push({
+                            UserId:0,
+                            Name:action.payload.name,
+                            Email:action.payload.email,
+                            Password:action.payload.password
+                        })
+                    }else{
+                        state.Users.push({
+                            UserId:state.Users[state.Users.length-1].UserId+1,
+                            Name:action.payload.name,
+                            Email:action.payload.email,
+                            Password:action.payload.password
+                        })
+                    }
                     alert("User registered")
                 }else{
                     alert("User already exist")
