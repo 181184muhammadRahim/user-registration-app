@@ -1,7 +1,11 @@
 import Login from "./Login.jsx"
+import SignUp from "./Signup.jsx";
 function App() {
   return (
-    <Login/>
+    <div>
+       <Login/>
+       <SignUp/>
+    </div>
   );
 }
 

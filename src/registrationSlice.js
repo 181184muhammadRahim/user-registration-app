@@ -25,7 +25,7 @@ const registrationSlice=createSlice(
         reducers:{
             addUser(state,action){
                 let flag=false;
-                for(let i=0;i<state.Users.length();i++){
+                for(let i=0;i<state.Users.length;i++){
                     if(state.Users[i].Email===action.payload.email){
                         flag=true;
                         break;
