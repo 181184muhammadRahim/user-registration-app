@@ -13,23 +13,27 @@ const Login=()=>{
             alert("Login Successful")
         }
     }, [loginListener])
-    
-    return(
-        <div style={{textAlign:"center", backgroundColor:"purple"}}>
-            <h1>User Login</h1>
-            <input type="text" value={email} placeholder="Email" onChange={(e)=> setEmail(e.target.value)} /><br/>
-            <input type="password" value={password} placeholder="Password" onChange={(e)=> setPassword(e.target.value)} /><br/>
-            <button onClick={()=>{
-                if(email !== "" && password!==""){
-                    dispatch(loginUser({email:email,password:password}))
-                    setEmail("")
-                    setPassword("")
 
-                }else{
-                    alert("Please fill all fields")
-                }
-            }}>Login</button>
-        </div>
-    )
+    if(loginListener === ""){
+        return(
+            <div style={{textAlign:"center", backgroundColor:"purple"}}>
+                <h1>User Login</h1>
+                <input type="text" value={email} placeholder="Email" onChange={(e)=> setEmail(e.target.value)} /><br/>
+                <input type="password" value={password} placeholder="Password" onChange={(e)=> setPassword(e.target.value)} /><br/>
+                <button onClick={()=>{
+                    if(email !== "" && password!==""){
+                        dispatch(loginUser({email:email,password:password}))
+                        setEmail("")
+                        setPassword("")
+    
+                    }else{
+                        alert("Please fill all fields")
+                    }
+                }}>Login</button>
+            </div>
+        )
+    }else{
+        return <h1>{loginListener}</h1>
+    }
 }
 export default Login;
