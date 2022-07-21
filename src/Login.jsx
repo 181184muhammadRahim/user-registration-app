@@ -1,19 +1,12 @@
-import React, { useState,useEffect } from "react";
+import React, { useState } from "react";
 import { useSelector,useDispatch } from "react-redux/es/exports";
-
 import {loginUser} from "./registrationSlice";
+import {showErrorToastMessage} from "./Notification";
 const Login=()=>{
     const loginListener=useSelector((state)=>state.registration.current_user);
     const dispatch=useDispatch();
     const [email,setEmail]=useState("");
     const [password,setPassword]=useState("");
-    useEffect(() => {
-        console.log("here");
-        if(loginListener !== ""){
-            alert("Login Successful")
-        }
-    }, [loginListener])
-
     if(loginListener === ""){
         return(
             <div style={{textAlign:"center", backgroundColor:"purple"}}>
@@ -27,13 +20,18 @@ const Login=()=>{
                         setPassword("")
     
                     }else{
-                        alert("Please fill all fields")
+                        showErrorToastMessage("Please fill all fields")
                     }
                 }}>Login</button>
             </div>
         )
     }else{
-        return <h1>{loginListener}</h1>
+        return (
+            <ul>
+                <h1>User Data:</h1>
+                <li>User Email:{loginListener}</li>
+            </ul>
+        )
     }
 }
 export default Login;

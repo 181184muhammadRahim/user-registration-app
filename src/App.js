@@ -4,6 +4,8 @@ import { useSelector,useDispatch } from "react-redux";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import {logoutUser} from "./registrationSlice"
 import Userlist from "./Userlist.jsx";
+import {ToastContainer} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 function App() {
   const loginListener=useSelector((state)=>state.registration.current_user);
   const dispatch=useDispatch();
@@ -23,6 +25,7 @@ function App() {
               <Link to="/UserList">User List</Link>
             </li>
           </ul>
+          <h2>{loginListener!=="" ? "Current user="+loginListener:"No login user"}</h2>
           </div>
           {
                 loginListener==="" ? <button disabled>Log Out</button>:
@@ -35,6 +38,7 @@ function App() {
           <Route exact path="/Signup" element={<SignUp />}></Route>
           <Route exact path="/UserList" element={<Userlist />}></Route>
         </Routes>
+        <ToastContainer toastStyle={{backgroundColor:'black'}}/>
       </div>
     </Router>
   );

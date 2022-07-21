@@ -7,7 +7,7 @@ const Userlist=()=>{
             <h1>User list</h1>
             {
                 UserList.map((element)=>{
-                    return <li>{element.Email}</li>
+                    return <li key={element.UserId}>{element.Email}</li>
                 })
             }
         </ol>

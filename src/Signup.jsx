@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 import {useDispatch } from "react-redux/es/exports";
 import { addUser } from './registrationSlice';
-
+import { showErrorToastMessage } from './Notification';
 const SignUp=()=>{
     const [email,setEmail]=useState("")
     const [password,setPassword]=useState("")
@@ -21,7 +21,7 @@ const SignUp=()=>{
                     setPassword("")
                     setName("")
                 }else{
-                    alert("Please fill all fields")
+                    showErrorToastMessage("Please fill all fields")
                 }
             }}>Sign Up</button>
         </div>
