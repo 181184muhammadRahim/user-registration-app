@@ -1,7 +1,7 @@
 import React, { useState,useEffect } from "react";
 import { useSelector,useDispatch } from "react-redux/es/exports";
 
-import { loginUser,logoutUser } from "./registrationSlice";
+import {loginUser} from "./registrationSlice";
 const Login=()=>{
     const loginListener=useSelector((state)=>state.registration.current_user);
     const dispatch=useDispatch();
@@ -29,12 +29,6 @@ const Login=()=>{
                     alert("Please fill all fields")
                 }
             }}>Login</button>
-            {
-                loginListener==="" ? <button disabled>Log Out</button>:
-                <button onClick={()=>{
-                    dispatch(logoutUser())  
-                }}>Log Out</button>
-            }
         </div>
     )
 }
