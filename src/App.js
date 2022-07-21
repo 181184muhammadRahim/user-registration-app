@@ -25,10 +25,10 @@ function App() {
               <Link to="/UserList">User List</Link>
             </li>
           </ul>
-          <h2>{loginListener!=="" ? "Current user="+loginListener:"No login user"}</h2>
+          <h2>{loginListener.email!=="" ? "Current user="+loginListener.email:"No login user"}</h2>
           </div>
           {
-                loginListener==="" ? <button disabled>Log Out</button>:
+                loginListener.email==="" ? <button disabled>Log Out</button>:
                 <button onClick={()=>{
                     dispatch(logoutUser())  
                 }}>Log Out</button>

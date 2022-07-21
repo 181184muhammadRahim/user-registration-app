@@ -7,7 +7,7 @@ const Login=()=>{
     const dispatch=useDispatch();
     const [email,setEmail]=useState("");
     const [password,setPassword]=useState("");
-    if(loginListener === ""){
+    if(loginListener.email === ""){
         return(
             <div style={{textAlign:"center", backgroundColor:"purple"}}>
                 <h1>User Login</h1>
@@ -29,9 +29,9 @@ const Login=()=>{
         return (
             <ul>
                 <h1>User Data:</h1>
-                <li>User Email:{loginListener}</li>
-            </ul>
-        )
+                <li>User Email:{loginListener.email}</li>
+                <li>User Name:{loginListener.name}</li>
+            </ul>        )
     }
 }
 export default Login;

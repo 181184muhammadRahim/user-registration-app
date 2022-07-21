@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { showSuccessToastMessage,showErrorToastMessage } from "./Notification";
 const initialState={
-    current_user: JSON.parse(localStorage.getItem("current-user")) || "",
+    current_user: JSON.parse(localStorage.getItem("current-user")) || {email:"",name:""},
     Users: JSON.parse(localStorage.getItem("user-list")) || []
 }
 const registrationSlice=createSlice(
@@ -40,15 +40,20 @@ const registrationSlice=createSlice(
             },
             loginUser(state,action){
                 let flag=false;
+                let index=-1;
                 for(let i=0;i<state.Users.length;i++){
                     if(state.Users[i].Email===action.payload.email && state.Users[i].Password===action.payload.password){
                         flag=true;
+                        index=i;
                         break;
                     }
                 }
                 console.log(flag);
                 if(flag){
-                    state.current_user=action.payload.email
+                    state.current_user={
+                        email:action.payload.email,
+                        name:state.Users[index].Name
+                    }
                     showSuccessToastMessage("Login successful")
                 }else{
                     showErrorToastMessage("Email or password is not correct")
@@ -57,7 +62,7 @@ const registrationSlice=createSlice(
 
             },
             logoutUser(state){
-                state.current_user="";
+                state.current_user={email:"",name:""};
                 showSuccessToastMessage("Log out successful")
             }
         }
